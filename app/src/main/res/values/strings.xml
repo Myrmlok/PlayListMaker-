@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">PlayListMaker</string>
+    <string name="app_name">PlayList Maker</string>
+    <string name="tittle_search">Поиск</string>
+    <string name="tittle_playlists">Плейлисты</string>
+    <string name="tittle_favourites">Избранное</string>>
+    <string name="tittle_settings">Настройки</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+
 </resources>

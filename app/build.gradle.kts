@@ -36,8 +36,11 @@ android {
 }
 
 dependencies {
+    implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.compose.animation.core)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)

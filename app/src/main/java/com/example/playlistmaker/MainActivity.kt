@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -33,9 +35,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
+import com.example.playlistmaker.nav.PlaylistHost
+import com.example.playlistmaker.nav.PlaylistScreen
 import com.example.playlistmaker.ui.theme.PlayListMakerTheme
 import org.intellij.lang.annotations.JdkConstants
 
@@ -45,9 +51,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PlayListMakerTheme {
+                val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GreetingPreview(
-                        modifier = Modifier.padding(innerPadding)
+                    PlaylistHost(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }
@@ -55,65 +63,87 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showSystemUi = true)
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
+fun MainScreen(
+    onSearchClick: () -> Unit={},
+    onPlaylistsClick: () -> Unit={},
+    onFavoritesClick: () -> Unit={},
+    onSettingsClick: () -> Unit={},
+    modifier: Modifier = Modifier,
+) {
+    Column(
         modifier = modifier
-    )
+            .fillMaxSize()
+            .background(Color.Blue)
+            .statusBarsPadding(),
+    ) {
+        Text(
+            text = stringResource(R.string.app_name),
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 20.dp),
+            color = Color.White,
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Medium,
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+                .background(Color.White)
+                .padding(top = 12.dp),
+        ) {
+            MainMenuItem(
+                iconRes = R.drawable.search,
+                title = stringResource(R.string.tittle_search),
+                onClick = onSearchClick,
+            )
+            MainMenuItem(
+                iconRes = R.drawable.playlist,
+                title = stringResource(R.string.tittle_playlists),
+                onClick = onPlaylistsClick,
+            )
+            MainMenuItem(
+                iconRes = R.drawable.favorites,
+                title = stringResource(R.string.tittle_favourites),
+                onClick = onFavoritesClick,
+            )
+            MainMenuItem(
+                iconRes = R.drawable.settings,
+                title = stringResource(R.string.tittle_settings),
+                onClick = onSettingsClick,
+            )
+        }
+    }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview(modifier: Modifier = Modifier) {
-    PlayListMakerTheme {
-        Column(modifier.background(Color.Blue)) {
-            val context = LocalContext.current
-            Text(stringResource(R.string.app_name), modifier = Modifier
-                .fillMaxHeight(0.08f)
-                .padding(20.dp), color = Color.White)
-            Column (modifier = Modifier.clip(RoundedCornerShape(16.dp,16.dp,0.dp,0.dp))
-                .fillMaxWidth().fillMaxHeight(1f).background(Color.White)){
-                Row (modifier = Modifier.padding(20.dp).fillMaxWidth().pointerInput(Unit) {
-                    detectTapGestures {
-                        val intent = Intent(context, SearchActivity::class.java)
-                        context.startActivity(intent)
-                    }
-                }, verticalAlignment = Alignment.CenterVertically){
-                    Row (modifier = Modifier.fillMaxWidth(0.95f)){
-                        Image(painterResource(id=R.drawable.search), contentDescription = null)
-                        Text(stringResource(R.string.tittle_search), Modifier.padding(10.dp,0.dp,0.dp,0.dp))
-                    }
-                    Image(painterResource(id=R.drawable.vector), contentDescription = null)
-                }
-                Row (modifier = Modifier.padding(20.dp).fillMaxWidth(), verticalAlignment = Alignment.CenterVertically){
-                    Row (modifier = Modifier.fillMaxWidth(0.95f)){
-                        Image(painterResource(id=R.drawable.playlist), contentDescription = null)
-                        Text(stringResource(R.string.tittle_playlists), Modifier.padding(10.dp,0.dp,0.dp,0.dp))
-                    }
-                    Image(painterResource(id=R.drawable.vector), contentDescription = null)
-                }
-                Row (modifier = Modifier.padding(20.dp).fillMaxWidth(), verticalAlignment = Alignment.CenterVertically){
-                    Row (modifier = Modifier.fillMaxWidth(0.95f)){
-                        Image(painterResource(id=R.drawable.favorites), contentDescription = null)
-                        Text(stringResource(R.string.tittle_favourites), Modifier.padding(10.dp,0.dp,0.dp,0.dp))
-                    }
-                    Image(painterResource(id=R.drawable.vector), contentDescription = null)
-                }
-                Row (modifier = Modifier.padding(20.dp).fillMaxWidth().pointerInput(Unit){
-                    detectTapGestures {
-                        val intent= Intent(context, SettingsActivity::class.java)
-                        context.startActivity(intent)
-                    }
-                }, verticalAlignment = Alignment.CenterVertically,){
-                    Row (modifier = Modifier.fillMaxWidth(0.95f)){
-                        Image(painterResource(id=R.drawable.settings), contentDescription = null)
-                        Text(stringResource(R.string.tittle_settings), Modifier.padding(10.dp,0.dp,0.dp,0.dp))
-                    }
-                    Image(painterResource(id=R.drawable.vector), contentDescription = null)
-                }
-            }
-
-        }
+private fun MainMenuItem(
+    @DrawableRes iconRes: Int,
+    title: String,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(horizontal = 16.dp, vertical = 20.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Image(
+            painter = painterResource(iconRes),
+            contentDescription = null,
+        )
+        Text(
+            text = title,
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 10.dp),
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Medium,
+        )
+        Image(
+            painter = painterResource(R.drawable.vector),
+            contentDescription = null,
+        )
     }
 }

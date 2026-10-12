@@ -6,5 +6,21 @@
     <string name="tittle_settings">Настройки</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <!-- Экран настроек -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_dark_theme">Тёмная тема</string>
+    <string name="settings_share_app">Поделиться приложением</string>
+    <string name="settings_write_to_developers">Написать разработчикам</string>
+    <string name="settings_user_agreement">Пользовательское соглашение</string>
 
+    <!-- Поделиться -->
+    <string name="share_app_message">Изучаю Android-разработку в Яндекс Практикуме: https://practicum.yandex.ru/android-developer/</string>
+
+    <!-- Письмо разработчикам -->
+    <string name="support_email">0webhype@gmail.com</string>
+    <string name="support_email_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <string name="support_email_body">Спасибо разработчикам и разработчицам за крутое приложение!</string>
+
+    <!-- Оферта -->
+    <string name="user_agreement_url">https://yandex.ru/legal/practicum_offer/</string>
 </resources>

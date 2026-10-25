@@ -1,4 +1,6 @@
-package com.example.playlistmaker
+package com.example.playlistmaker.ui.setting
+
+import com.example.playlistmaker.R
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -53,22 +55,6 @@ import com.example.playlistmaker.ui.theme.SettingsGray
 import com.example.playlistmaker.ui.theme.SettingsLightGray
 import com.example.playlistmaker.ui.theme.SettingsWhite
 
-class SettingsActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            PlayListMakerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SettingsScreen (
-                        modifier = Modifier.padding(innerPadding),
-                        { finish() }
-                    )
-                }
-            }
-        }
-    }
-}
 @Preview(showSystemUi = true)
 @Composable
 fun SettingsScreen(modifier: Modifier= Modifier, onBackClick: () -> Unit={}) {

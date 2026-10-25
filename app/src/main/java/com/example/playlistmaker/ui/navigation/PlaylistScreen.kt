@@ -1,7 +1,8 @@
-package com.example.playlistmaker.nav
+package com.example.playlistmaker.ui.navigation
 
 enum class PlaylistScreen {
     Main,
     Search,
     Settings,
+    Details,
 }

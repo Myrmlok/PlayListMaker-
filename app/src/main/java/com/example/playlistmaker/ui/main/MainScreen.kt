@@ -1,11 +1,5 @@
-package com.example.playlistmaker
+package com.example.playlistmaker.ui.main
 
-import android.content.Intent
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,29 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
-import com.example.playlistmaker.nav.PlaylistHost
-import com.example.playlistmaker.nav.PlaylistScreen
-import com.example.playlistmaker.ui.theme.PlayListMakerTheme
-import org.intellij.lang.annotations.JdkConstants
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            PlayListMakerTheme {
-                val navController = rememberNavController()
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    PlaylistHost(
-                        navController = navController,
-                        modifier = Modifier.padding(innerPadding),
-                    )
-                }
-            }
-        }
-    }
-}
+import com.example.playlistmaker.R
 
 @Preview(showSystemUi = true)
 @Composable

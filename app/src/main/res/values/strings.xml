@@ -17,10 +17,18 @@
     <string name="share_app_message">Изучаю Android-разработку в Яндекс Практикуме: https://practicum.yandex.ru/android-developer/</string>
 
     <!-- Письмо разработчикам -->
-    <string name="support_email">0webhype@gmail.com</string>
+    <string name="support_email">dkomaro@sfedu.ru</string>
     <string name="support_email_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="support_email_body">Спасибо разработчикам и разработчицам за крутое приложение!</string>
 
     <!-- Оферта -->
     <string name="user_agreement_url">https://yandex.ru/legal/practicum_offer/</string>
+
+    <!-- Экран поиска -->
+    <string name="search_tracks_placeholder">Поиск</string>
+    <string name="search_icon">Найти</string>
+    <string name="clear_search">Очистить</string>
+    <string name="no_tracks_found">Ничего не нашлось</string>
+    <string name="check_connection">Проверьте подключение к интернету</string>
+    <string name="arrow_forward">Открыть трек</string>
 </resources>
